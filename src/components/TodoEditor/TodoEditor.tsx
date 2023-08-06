@@ -4,7 +4,7 @@ import { TodoItem, TodoItemStatus } from 'src/types';
 
 interface TodoEditorProps {
   todoItem: TodoItem;
-  setTodoItem: React.Dispatch<React.SetStateAction<TodoItem>>;
+  setTodoItem: (todoItem: TodoItem) => void;
 }
 
 export const TodoEditor = (props: TodoEditorProps) => {
@@ -14,7 +14,7 @@ export const TodoEditor = (props: TodoEditorProps) => {
     setTodoItem({ ...todoItem, title: e.target.value });
   };
 
-  const onStatusChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  const onStatusChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
     setTodoItem({ ...todoItem, status: e.target.value as TodoItemStatus });
   };
 
@@ -33,34 +33,11 @@ export const TodoEditor = (props: TodoEditorProps) => {
       </fieldset>
       <fieldset className={styles.statusField}>
         <legend>Статус задачи</legend>
-        <div>
-          <input
-            id={styles.waitingStatus}
-            type="radio"
-            value={'waiting' as TodoItemStatus}
-            onChange={onStatusChange}
-            checked={todoItem.status === 'waiting'}
-          />
-          <label htmlFor={styles.waitingStatus}>Ожидает</label>
-
-          <input
-            id={styles.inProcessStatus}
-            type="radio"
-            value={'in process' as TodoItemStatus}
-            onChange={onStatusChange}
-            checked={todoItem.status === 'in process'}
-          />
-          <label htmlFor={styles.inProcessStatus}>В процессе</label>
-
-          <input
-            id={styles.completedStatus}
-            type="radio"
-            value={'completed' as TodoItemStatus}
-            onChange={onStatusChange}
-            checked={todoItem.status === 'completed'}
-          />
-          <label htmlFor={styles.completedStatus}>Выполнена</label>
-        </div>
+        <select value={todoItem.status} onChange={onStatusChange}>
+          <option value={'waiting' as TodoItemStatus}>Ожидает</option>
+          <option value={'in process' as TodoItemStatus}>В процессе</option>
+          <option value={'completed' as TodoItemStatus}>Завершена</option>
+        </select>
       </fieldset>
     </div>
   );
