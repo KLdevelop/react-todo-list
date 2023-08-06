@@ -12,6 +12,7 @@ interface TodoFormProps {
 export const TodoForm = (props: TodoFormProps) => {
   const { todoItems, dispatchTodo } = props;
   const [activeId, setActiveId] = useState(null as number | null);
+  const activeItem = activeId !== null ? todoItems.get(activeId) : undefined;
 
   const setTodoItem = (todoItem: TodoItem) => {
     if (activeId === null) return;
@@ -39,7 +40,7 @@ export const TodoForm = (props: TodoFormProps) => {
     <div className={styles.todoForm}>
       <button onClick={addTodoItem}>Добавить задачу</button>
       <TodoList todoItems={todoItems} activeId={activeId} setActiveId={setActiveId} />
-      {activeId !== null && <TodoEditor todoItem={todoItems[activeId]} setTodoItem={setTodoItem} />}
+      {activeItem !== undefined && <TodoEditor todoItem={activeItem} setTodoItem={setTodoItem} />}
     </div>
   );
 };

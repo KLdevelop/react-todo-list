@@ -5,4 +5,4 @@ export interface TodoItem {
   status: TodoItemStatus;
 }
 
-export type TodoItems = Record<number, TodoItem>;
+export type TodoItems = Map<number, TodoItem>;
