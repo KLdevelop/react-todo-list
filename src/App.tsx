@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useReducer } from 'react';
 import './App.css';
+import { TodoForm } from './components';
+import { todoReducer } from './reducers';
+import { TodoItems } from './types';
 
 function App() {
+  const [todoItems, dispatchTodo] = useReducer(
+    todoReducer,
+    new Map([
+      [1, { title: 'some', status: 'waiting' }],
+      [2, { title: 'Sword Art Online', status: 'completed' }],
+    ]) as TodoItems,
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TodoForm todoItems={todoItems} dispatchTodo={dispatchTodo} />
     </div>
   );
 }
