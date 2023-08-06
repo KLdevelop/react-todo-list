@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './todoList.module.scss';
-import { TodoItem, TodoItems } from 'src/types';
+import { TodoItems } from 'src/types';
 
 interface TodoListProps {
   todoItems: TodoItems;
@@ -9,16 +9,15 @@ interface TodoListProps {
 }
 
 export const TodoList = (props: TodoListProps) => {
-  const todoItems = Object.entries<TodoItem>(props.todoItems);
-  const { activeId, setActiveId } = props;
+  const { activeId, setActiveId, todoItems } = props;
 
   return (
     <div className={styles.todoList}>
-      {todoItems.map(([id, todoItem]) => (
+      {Array.from(todoItems).map(([id, todoItem]) => (
         <div
-          className={activeId === +id ? styles.activeTodoItem : styles.todoItem}
+          className={activeId === id ? styles.activeTodoItem : styles.todoItem}
           key={id}
-          onClick={() => setActiveId(Number(id))}
+          onClick={() => setActiveId(id)}
         >
           <p>{todoItem.title}</p>
           <p>{todoItem.status}</p>
