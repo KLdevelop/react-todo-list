@@ -10,11 +10,21 @@ export const TodoForm = () => {
 
   return (
     <div className={styles.todoForm}>
-      <button onClick={addTodoItem}>Добавить задачу</button>
-      <TodoList todoItems={todoItems} activeId={activeId} setActiveId={setActiveId} />
-      {activeItem !== undefined && (
-        <TodoEditor todoItem={activeItem} setTodoItem={setTodoItem.bind(null, activeId)} />
-      )}
+      <div className={styles.topPanel}>
+        <button onClick={addTodoItem} className={styles.addTodoItem}>
+          Добавить задачу
+        </button>
+      </div>
+      <div className={styles.content}>
+        <span className={styles.todoList}>
+          <TodoList todoItems={todoItems} activeId={activeId} setActiveId={setActiveId} />
+        </span>
+        <span className={styles.todoEditor}>
+          {activeItem !== undefined && (
+            <TodoEditor todoItem={activeItem} setTodoItem={setTodoItem.bind(null, activeId)} />
+          )}
+        </span>
+      </div>
     </div>
   );
 };

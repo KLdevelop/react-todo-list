@@ -1,0 +1,40 @@
+.todoForm {
+  $form-height: 500px;
+  $form-width: 1000px;
+  $head-height: 55px;
+  $border-size: 1px;
+  $content-height: calc($form-height - $head-height - 2 * $border-size);
+  $border: $border-size solid #5c5c5c;
+
+  height: $form-height;
+  width: $form-width;
+  border: $border;
+  border-radius: 5px;
+
+  .topPanel {
+    height: $head-height;
+    padding: 5px;
+    border-bottom: $border;
+
+    .addTodoItem {
+      width: 200px;
+      height: 100%;
+    }
+  }
+
+  .content {
+    height: $content-height;
+    display: flex;
+
+    .todoList {
+      max-height: $content-height;
+      width: 30%;
+      max-width: 100%;
+      border-right: $border;
+    }
+
+    .todoEditor {
+      width: 100%;
+    }
+  }
+}
