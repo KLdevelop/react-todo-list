@@ -19,8 +19,8 @@ export const TodoList = (props: TodoListProps) => {
           key={id}
           onClick={() => setActiveId(id)}
         >
-          <p>{todoItem.title}</p>
-          <p>{todoItem.status}</p>
+          <p className={styles.title}>{todoItem.title}</p>
+          <p className={styles.status}>{todoItem.status}</p>
         </div>
       ))}
     </div>

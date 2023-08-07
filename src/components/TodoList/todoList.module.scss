@@ -1,0 +1,13 @@
+.todoList {
+  height: 100%;
+  overflow-y: scroll;
+
+  .activeTodoItem,
+  .todoItem {
+    .title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
