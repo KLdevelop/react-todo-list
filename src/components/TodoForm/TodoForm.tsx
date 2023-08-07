@@ -1,46 +1,20 @@
 import React, { useState } from 'react';
 import styles from './todoForm.module.scss';
 import { TodoList, TodoEditor } from '..';
-import { TodoItem, TodoItems } from 'src/types';
-import { TodoActions, TodoAction } from 'src/reducers';
+import { useCacheableTodoState } from 'src/hooks';
 
-interface TodoFormProps {
-  todoItems: TodoItems;
-  dispatchTodo: React.Dispatch<TodoAction>;
-}
-
-export const TodoForm = (props: TodoFormProps) => {
-  const { todoItems, dispatchTodo } = props;
+export const TodoForm = () => {
+  const { todoItems, setTodoItem, addTodoItem } = useCacheableTodoState();
   const [activeId, setActiveId] = useState(null as number | null);
   const activeItem = activeId !== null ? todoItems.get(activeId) : undefined;
-
-  const setTodoItem = (todoItem: TodoItem) => {
-    if (activeId === null) return;
-
-    dispatchTodo({
-      type: TodoActions.SET_TODO,
-      payload: {
-        id: activeId,
-        todoItem: todoItem,
-      },
-    });
-  };
-
-  const addTodoItem = () => {
-    dispatchTodo({
-      type: TodoActions.ADD_TODO,
-      payload: {
-        title: 'Новая задача',
-        status: 'waiting',
-      },
-    });
-  };
 
   return (
     <div className={styles.todoForm}>
       <button onClick={addTodoItem}>Добавить задачу</button>
       <TodoList todoItems={todoItems} activeId={activeId} setActiveId={setActiveId} />
-      {activeItem !== undefined && <TodoEditor todoItem={activeItem} setTodoItem={setTodoItem} />}
+      {activeItem !== undefined && (
+        <TodoEditor todoItem={activeItem} setTodoItem={setTodoItem.bind(null, activeId)} />
+      )}
     </div>
   );
 };
