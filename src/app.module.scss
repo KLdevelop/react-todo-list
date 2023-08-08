@@ -1,13 +1,16 @@
 @use '/src/assets/fonts/Roboto/Roboto.module.scss';
 
 * {
-  font-family: 'Roboto';
   box-sizing: border-box;
+  margin: 0;
 }
 
 .app {
+  font-family: 'Roboto';
+  color: #1d1c1c;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 17px;
 }
