@@ -1,0 +1,50 @@
+@use '/src/assets/fonts/Inter/Inter.module.scss';
+
+.todoList {
+  height: 100%;
+  overflow-y: scroll;
+
+  .activeTodoItem,
+  .todoItem:hover {
+    background-color: #dedddd;
+  }
+
+  .activeTodoItem,
+  .todoItem {
+    padding: 10px;
+
+    &:not(:last-child) {
+      margin-bottom: 2px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-bottom: 5px;
+    }
+
+    .waitingStatus,
+    .inProcessStatus,
+    .completedStatus {
+      font-family: 'Inter';
+      font-weight: bolder;
+    }
+
+    .waitingStatus {
+      color: #73787c;
+    }
+
+    .inProcessStatus {
+      color: #2c65df;
+    }
+
+    .completedStatus {
+      color: #11c583;
+    }
+  }
+}

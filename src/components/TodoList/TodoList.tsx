@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './todoList.module.scss';
 import { TodoItems } from 'src/types';
+import { getStringFromTodoItemStatus, getTodoItemStatusClassName } from './utils';
 
 interface TodoListProps {
   todoItems: TodoItems;
@@ -19,8 +20,10 @@ export const TodoList = (props: TodoListProps) => {
           key={id}
           onClick={() => setActiveId(id)}
         >
-          <p>{todoItem.title}</p>
-          <p>{todoItem.status}</p>
+          <p className={styles.title}>{todoItem.title}</p>
+          <p className={getTodoItemStatusClassName(todoItem.status)}>
+            {getStringFromTodoItemStatus(todoItem.status)}
+          </p>
         </div>
       ))}
     </div>

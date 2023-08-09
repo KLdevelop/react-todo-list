@@ -46,7 +46,11 @@ export const TodoEditor = (props: TodoEditorProps) => {
           <option value={'completed' as TodoItemStatus}>Завершена</option>
         </select>
       </fieldset>
-      {changed && <button onClick={onSaveClick}>Сохранить изменения</button>}
+      {changed && (
+        <button onClick={onSaveClick} className={styles.saveButton}>
+          Сохранить изменения
+        </button>
+      )}
     </div>
   );
 };

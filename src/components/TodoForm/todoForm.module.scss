@@ -1,0 +1,56 @@
+.todoForm {
+  $form-width: 1000px;
+  $head-height: 55px;
+  $border-size: 1px;
+  $content-height: 450px;
+  $border: $border-size solid #5c5c5c;
+
+  width: $form-width;
+
+  @mixin round-border {
+    border: $border;
+    border-radius: 5px;
+  }
+
+  .topPanel {
+    @include round-border();
+    height: $head-height;
+    padding: 5px;
+    margin-bottom: 5px;
+
+    .addTodoItem {
+      width: 200px;
+      height: 100%;
+      border-radius: 5px;
+      border: 1px solid gray;
+      background-color: rgba(gray, 0.05);
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(gray, 0.15);
+      }
+
+      &:active {
+        background-color: rgba(gray, 0.25);
+      }
+    }
+  }
+
+  .content {
+    @include round-border();
+    height: $content-height;
+    display: flex;
+
+    .todoList {
+      height: 100%;
+      width: 30%;
+      min-width: 100px;
+      max-width: 100%;
+      border-right: $border;
+    }
+
+    .todoEditor {
+      width: 100%;
+    }
+  }
+}
