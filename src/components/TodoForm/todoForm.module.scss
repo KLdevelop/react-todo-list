@@ -21,9 +21,17 @@
     .addTodoItem {
       width: 200px;
       height: 100%;
+      border-radius: 5px;
+      border: 1px solid gray;
+      background-color: rgba(gray, 0.05);
 
       &:hover {
         cursor: pointer;
+        background-color: rgba(gray, 0.15);
+      }
+
+      &:active {
+        background-color: rgba(gray, 0.25);
       }
     }
   }
@@ -36,6 +44,7 @@
     .todoList {
       height: 100%;
       width: 30%;
+      min-width: 100px;
       max-width: 100%;
       border-right: $border;
     }
