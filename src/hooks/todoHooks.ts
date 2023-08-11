@@ -33,5 +33,12 @@ export const useCacheableTodoState = () => {
     });
   };
 
-  return { todoItems, setTodoItem, addTodoItem };
+  const deleteTodoItem = (id: number) => {
+    dispatch({
+      type: TodoActions.DELETE_TODO,
+      payload: id,
+    });
+  };
+
+  return { todoItems, setTodoItem, addTodoItem, deleteTodoItem };
 };
