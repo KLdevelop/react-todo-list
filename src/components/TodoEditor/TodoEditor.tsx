@@ -10,7 +10,7 @@ interface TodoEditorProps {
 export const TodoEditor = (props: TodoEditorProps) => {
   const { todoItem, setTodoItem } = props;
   const [title, setTitle] = useState('');
-  const [status, setStatus] = useState('waiting' as TodoItemStatus);
+  const [status, setStatus] = useState<TodoItemStatus>('waiting');
   const changed = title !== todoItem.title || status !== todoItem.status;
 
   useEffect(() => {
