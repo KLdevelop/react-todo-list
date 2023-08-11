@@ -9,6 +9,7 @@
   display: grid;
   align-content: flex-start;
   gap: 15px;
+  user-select: none;
 
   * {
     white-space: nowrap;
@@ -47,6 +48,10 @@
       outline: none;
       height: 100%;
       width: 100%;
+    }
+
+    select:hover {
+      cursor: pointer;
     }
 
     legend {
