@@ -1,9 +1,10 @@
 .todoForm {
   $form-width: 1000px;
   $head-height: 55px;
-  $border-size: 1px;
   $content-height: 450px;
-  $border: $border-size solid #5c5c5c;
+  $border-size: 2px;
+  $border-color: #5c5c5c;
+  $border: $border-size solid $border-color;
 
   width: $form-width;
 
@@ -44,13 +45,20 @@
     .todoList {
       height: 100%;
       width: 30%;
-      min-width: 100px;
+      min-width: 150px;
       max-width: 100%;
+      resize: horizontal;
+    }
+
+    .resizer {
+      height: 100%;
+      width: 0;
       border-right: $border;
+      cursor: col-resize;
     }
 
     .todoEditor {
-      width: 100%;
+      flex: 1 1;
     }
   }
 }
