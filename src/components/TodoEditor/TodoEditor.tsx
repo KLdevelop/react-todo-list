@@ -5,10 +5,11 @@ import { TodoItem, TodoItemStatus } from 'src/types';
 interface TodoEditorProps {
   todoItem: TodoItem;
   setTodoItem: (todoItem: TodoItem) => void;
+  deleteTodoItem: () => void;
 }
 
 export const TodoEditor = (props: TodoEditorProps) => {
-  const { todoItem, setTodoItem } = props;
+  const { todoItem, setTodoItem, deleteTodoItem } = props;
   const [title, setTitle] = useState('');
   const [status, setStatus] = useState<TodoItemStatus>('waiting');
   const changed = title !== todoItem.title || status !== todoItem.status;
@@ -51,6 +52,9 @@ export const TodoEditor = (props: TodoEditorProps) => {
           Сохранить изменения
         </button>
       )}
+      <button className={styles.deleteButton} onClick={deleteTodoItem}>
+        Удалить задачу
+      </button>
     </div>
   );
 };

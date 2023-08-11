@@ -6,7 +6,8 @@
   $focus-color: #136af8;
 
   padding: 5px 10px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   align-content: flex-start;
   gap: 15px;
   user-select: none;
@@ -15,20 +16,31 @@
     white-space: nowrap;
   }
 
-  .saveButton {
+  @mixin buttonMixin($button-color) {
     height: 55px;
     border-radius: 5px;
-    border: 1px solid gray;
-    background-color: rgba(gray, 0.05);
+    border: 1px solid $button-color;
+    background-color: rgba($button-color, 0.05);
 
     &:hover {
       cursor: pointer;
-      background-color: rgba(gray, 0.15);
+      background-color: rgba($button-color, 0.15);
     }
 
     &:active {
-      background-color: rgba(gray, 0.25);
+      background-color: rgba($button-color, 0.25);
     }
+  }
+
+  .saveButton {
+    @include buttonMixin(gray);
+  }
+
+  .deleteButton {
+    $button-color: #bd3e3e;
+    @include buttonMixin($button-color);
+    color: $button-color;
+    margin-top: auto;
   }
 
   .titleField,
