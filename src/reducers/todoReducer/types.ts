@@ -3,6 +3,7 @@ import { TodoItem } from 'src/types';
 export enum TodoActions {
   SET_TODO = 'SET_TODO',
   ADD_TODO = 'ADD_TODO',
+  DELETE_TODO = 'DELETE_TODO',
 }
 
 export interface SetTodo {
@@ -18,4 +19,9 @@ export interface AddTodo {
   payload: TodoItem;
 }
 
-export type TodoAction = SetTodo | AddTodo;
+export interface DeleteTodo {
+  type: TodoActions.DELETE_TODO;
+  payload: number;
+}
+
+export type TodoAction = SetTodo | AddTodo | DeleteTodo;

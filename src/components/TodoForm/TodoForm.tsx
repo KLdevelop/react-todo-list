@@ -4,7 +4,7 @@ import { TodoList, TodoEditor } from '..';
 import { useCacheableTodoState, useResizer } from 'src/hooks';
 
 export const TodoForm = () => {
-  const { todoItems, setTodoItem, addTodoItem } = useCacheableTodoState();
+  const { todoItems, setTodoItem, addTodoItem, deleteTodoItem } = useCacheableTodoState();
   const [activeId, setActiveId] = useState<number | null>(null);
   const activeItem = activeId !== null ? todoItems.get(activeId) : undefined;
 
@@ -22,11 +22,12 @@ export const TodoForm = () => {
           <TodoList todoItems={todoItems} activeId={activeId} setActiveId={setActiveId} />
         </span>
         <span className={styles.resizer} ref={resizerRef} />
-        {activeItem !== undefined && (
+        {activeId !== null && activeItem !== undefined && (
           <span className={styles.todoEditor}>
             <TodoEditor
               todoItem={activeItem}
               setTodoItem={(todoItem) => setTodoItem(activeId, todoItem)}
+              deleteTodoItem={() => deleteTodoItem(activeId)}
             />
           </span>
         )}

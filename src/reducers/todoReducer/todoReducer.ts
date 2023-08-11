@@ -25,6 +25,14 @@ export const todoReducer: Reducer<TodoItems, TodoAction> = (state, action) => {
       return newState;
     }
 
+    case TodoActions.DELETE_TODO: {
+      const newState = new Map(state);
+
+      newState.delete(action.payload);
+
+      return newState;
+    }
+
     default: {
       return state;
     }
