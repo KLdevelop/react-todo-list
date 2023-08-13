@@ -3,7 +3,14 @@ import { TodoActions, todoReducer } from 'src/reducers';
 import { TodoItem } from 'src/types';
 import { getTodoList, saveTodoList } from 'src/utils';
 
+/**
+ * Возвращает состояние со списком дел, загружаемого из localstorage, и функции для его изменения:
+ * изменение задачи, добавление новой задачи, удаление задачи.
+ *
+ * Все изменения списка дел сохраняются в localstorage.
+ */
 export const useCacheableTodoState = () => {
+  /** Список дел загружается из localstorage лишь 1 раз: при монтировании компонента */
   const todoList = useMemo(() => getTodoList(), []);
   const [todoItems, dispatch] = useReducer(todoReducer, todoList);
 
@@ -11,9 +18,13 @@ export const useCacheableTodoState = () => {
     saveTodoList(todoItems);
   }, [todoItems]);
 
-  const setTodoItem = (id: number | null, todoItem: TodoItem) => {
-    if (id === null) return;
-
+  /**
+   * Обновляет информацию о задаче.
+   *
+   * @param id id обновляемой задачи.
+   * @param todoItem новые данные задачи.
+   */
+  const setTodoItem = (id: number, todoItem: TodoItem) => {
     dispatch({
       type: TodoActions.SET_TODO,
       payload: {
@@ -23,6 +34,7 @@ export const useCacheableTodoState = () => {
     });
   };
 
+  /** Добавляет в список дел новую задачу. */
   const addTodoItem = () => {
     dispatch({
       type: TodoActions.ADD_TODO,
@@ -33,6 +45,11 @@ export const useCacheableTodoState = () => {
     });
   };
 
+  /**
+   * Удаляет задачу из списка дел.
+   *
+   * @param id id удаляемой задачи
+   */
   const deleteTodoItem = (id: number) => {
     dispatch({
       type: TodoActions.DELETE_TODO,
