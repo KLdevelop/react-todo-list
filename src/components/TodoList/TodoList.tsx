@@ -5,12 +5,15 @@ import { getStringFromTodoItemStatus, getTodoItemStatusClassName } from './utils
 
 interface TodoListProps {
   todoItems: TodoItems;
+
+  /** ID активной задачи. */
   activeId: number | null;
   setActiveId: (id: number | null) => void;
 }
 
+/** Компонент для отображения списка дел. */
 export const TodoList = (props: TodoListProps) => {
-  const { activeId, setActiveId, todoItems } = props;
+  const { todoItems, activeId, setActiveId } = props;
 
   return (
     <div className={styles.todoList}>
