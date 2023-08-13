@@ -3,6 +3,7 @@ import { TodoItem, TodoItems } from 'src/types';
 const storage = localStorage;
 const TODO_LIST = 'TODO_LIST';
 
+/** Получение сохраненого в localstorage списка дел. */
 export const getTodoList = (): TodoItems => {
   const todoListJson = storage.getItem(TODO_LIST);
 
@@ -18,6 +19,11 @@ export const getTodoList = (): TodoItems => {
   return todoList;
 };
 
+/**
+ * Сохранение списка дел в localstorage.
+ *
+ * @param todoList сохраняемый список задач.
+ */
 export const saveTodoList = (todoList: TodoItems) => {
   const todoListObject = Object.fromEntries(todoList.entries());
 
