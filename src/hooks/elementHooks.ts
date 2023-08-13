@@ -1,9 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const useResizer = () => {
+interface ResizingRefs {
+  /** ref элемента, который меняет ширину. */
+  resizerRef: React.RefObject<HTMLElement>;
+
+  /** ref элемента, ширину которого нужно менять. */
+  resizableRef: React.RefObject<HTMLElement>;
+}
+
+/**
+ * Возвращает ref элемента, меняющего ширину другого элемента,
+ * и ref элемента, ширину которого нужно менять.
+ */
+export const useResizer = (): ResizingRefs => {
   const resizerRef = useRef<HTMLElement>(null);
   const resizableRef = useRef<HTMLElement>(null);
 
+  /** Флаг перемещения элемента resizer */
   const [moving, setMoving] = useState(false);
 
   useEffect(() => {
@@ -28,11 +41,11 @@ export const useResizer = () => {
     const resizer = resizerRef.current;
 
     if (resizer !== null) {
-      const onMouseDown = (e: MouseEvent) => {
+      const onMouseDown = () => {
         setMoving(true);
       };
 
-      const onMouseUp = (e: Event) => {
+      const onMouseUp = () => {
         setMoving(false);
       };
 

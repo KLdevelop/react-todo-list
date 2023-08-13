@@ -8,6 +8,7 @@ interface TodoEditorProps {
   deleteTodoItem: () => void;
 }
 
+/** Компонент для редактирования информации о задаче. */
 export const TodoEditor = (props: TodoEditorProps) => {
   const { todoItem, setTodoItem, deleteTodoItem } = props;
   const [title, setTitle] = useState('');

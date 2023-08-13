@@ -4,18 +4,21 @@ import { TodoList, TodoEditor } from '..';
 import { useCacheableTodoState, useResizer } from 'src/hooks';
 import { filterTodoList } from 'src/utils';
 
+/** Комопонент для просмотра и изменения списка дел. */
 export const TodoForm = () => {
   const { todoItems, setTodoItem, addTodoItem, deleteTodoItem } = useCacheableTodoState();
   const [filterString, setFilterString] = useState('');
   const filteredTodoItems = filterTodoList(todoItems, filterString);
 
   const [activeId, setActiveId] = useState<number | null>(null);
+  /** Выбранная задача. */
   const activeItem = activeId !== null ? todoItems.get(activeId) : undefined;
 
   const { resizerRef, resizableRef } = useResizer();
 
   return (
     <div className={styles.todoForm}>
+      {/** Верхняя панель. */}
       <div className={styles.topPanel}>
         <button onClick={addTodoItem} className={styles.addTodoItem}>
           Добавить задачу
@@ -28,6 +31,8 @@ export const TodoForm = () => {
           placeholder="Поиск задачи"
         />
       </div>
+
+      {/** Список дел и редактор задач. */}
       <div className={styles.content}>
         <span className={styles.todoList} ref={resizableRef}>
           <TodoList todoItems={filteredTodoItems} activeId={activeId} setActiveId={setActiveId} />

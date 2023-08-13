@@ -2,6 +2,7 @@ import { Reducer } from 'react';
 import { TodoItems } from 'src/types';
 import { TodoAction, TodoActions } from './types';
 
+/** Reducer списка дел. */
 export const todoReducer: Reducer<TodoItems, TodoAction> = (state, action) => {
   switch (action.type) {
     case TodoActions.SET_TODO: {
