@@ -1,7 +1,9 @@
-import { useEffect, useMemo, useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { TodoActions, todoReducer } from 'src/reducers';
 import { TodoItem } from 'src/types';
 import { getTodoList, saveTodoList } from 'src/utils';
+
+const todoList = getTodoList();
 
 /**
  * Возвращает состояние со списком дел, загружаемого из localstorage, и функции для его изменения:
@@ -10,8 +12,6 @@ import { getTodoList, saveTodoList } from 'src/utils';
  * Все изменения списка дел сохраняются в localstorage.
  */
 export const useCacheableTodoState = () => {
-  /** Список дел загружается из localstorage лишь 1 раз: при монтировании компонента */
-  const todoList = useMemo(() => getTodoList(), []);
   const [todoItems, dispatch] = useReducer(todoReducer, todoList);
 
   useEffect(() => {
