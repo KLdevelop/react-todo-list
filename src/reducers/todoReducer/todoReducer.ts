@@ -17,8 +17,6 @@ export const todoReducer: Reducer<TodoItems, TodoAction> = (state, action) => {
       const ids = Array.from(state.keys());
       const idCount = ids.length;
       const newID = idCount > 0 ? Number(ids[idCount - 1]) + 1 : 0;
-      console.log(newID);
-
       const newState = new Map(state);
 
       newState.set(newID, action.payload);
